@@ -2,6 +2,7 @@ package com.example.gifosaurus.repository
 
 import com.example.gifosaurus.api.GiphyApiService
 import com.example.gifosaurus.model.GifResponse
+import retrofit2.http.Query
 
 /**
  * Клас, який використовує GiphyApiService для виконання запитів до API.
@@ -11,13 +12,13 @@ class GiphyRepository(private val apiService: GiphyApiService) {
         apiKey: String,
         query: String,
         limit: Int,
-        offset: Int,
+        offset: Int
     ): GifResponse {
         return apiService.searchGifs(
             apiKey = apiKey,
             query = query,
             limit = limit,
-            offset = offset,
+            offset = offset
         )
     }
 

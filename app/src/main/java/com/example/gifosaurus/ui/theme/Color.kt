@@ -11,7 +11,7 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 // TopBar colors
-val TopBarBackgroundColor = Color(0xFFA1749C)
+val SerchBarBackgroundColor = Color(0xFFA1749C)
 val TopBarTextColor = Color(0xFF363434)
 
 // Search colors
