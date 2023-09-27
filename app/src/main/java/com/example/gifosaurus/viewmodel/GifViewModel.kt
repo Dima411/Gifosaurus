@@ -79,7 +79,7 @@ class GifViewModel(private val repository: GiphyRepository) : ViewModel() {
      * @param text The text to be used for filtering the search history.
      * @return A list of filtered search history entries.
      */
-    fun searchHistory(text: String) :  List<InputHistory> {
+    private fun searchHistory(text: String) :  List<InputHistory> {
         val newShowHistory = fullHistory.toList()
         val filterHistory = newShowHistory.filter {
             it.textInput.lowercase().contains(text, true)

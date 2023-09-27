@@ -2,11 +2,14 @@ package com.example.gifosaurus.ui.screens.searchbar
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -29,6 +32,7 @@ import com.example.gifosaurus.viewmodel.GifViewModel
 fun SearchBar(viewModel: GifViewModel) {
     val searchText = remember { mutableStateOf("") }
     val iconSearch = Icons.Filled.Search
+    val iconClear = Icons.Filled.Clear
     val isActive = remember {
         mutableStateOf(false)
     }
@@ -37,7 +41,7 @@ fun SearchBar(viewModel: GifViewModel) {
         isActive.value = false
         searchText.value = text
         viewModel.addInSearchText(searchText.value)
-        if(searchText.value != "") {
+        if (searchText.value != "") {
             viewModel.searchGifs(searchText.value)
         } else {
             viewModel.clearFilter()
@@ -72,20 +76,36 @@ fun SearchBar(viewModel: GifViewModel) {
         },
         shape = ShapeDefaults.ExtraLarge,
         trailingIcon = {
-            Icon(
-                modifier = Modifier
-                    .clickable {
-                        actionsForClickableInSearch(searchText.value)
-                    }
-                    .padding(end = 10.dp),
-                imageVector = iconSearch,
-                contentDescription = null,
-                tint = SearchTextColor
-            )
+            if (isActive.value != true) {
+                Icon(
+                    modifier = Modifier
+                        .clickable {
+                            actionsForClickableInSearch(searchText.value)
+                        }
+                        .padding(end = 10.dp),
+                    imageVector = iconSearch,
+                    contentDescription = null,
+                    tint = SearchTextColor
+                )
+            } else {
+                Icon(
+                    modifier = Modifier
+                        .clickable {
+                            searchText.value = ""
+                            viewModel.showHistory.clear()
+                            viewModel.showHistory.addAll(viewModel.fullHistory)
+                        }
+                        .padding(end = 10.dp),
+                    imageVector = iconClear,
+                    contentDescription = null,
+                    tint = SearchTextColor
+                )
+            }
+
         }
     ) {
         LazyColumn {
-            items(viewModel.showHistory) {
+            items(viewModel.showHistory.filter { it.textInput != "" }) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -94,9 +114,12 @@ fun SearchBar(viewModel: GifViewModel) {
                             actionsForClickableInSearch(it.textInput)
                         }
                 ) {
-                    Text(text = it.textInput)
+                    Text(
+                        text = it.textInput
+                    )
                 }
             }
         }
     }
 }
+//showHistory.removeIf { it.textInput.isBlank() }
