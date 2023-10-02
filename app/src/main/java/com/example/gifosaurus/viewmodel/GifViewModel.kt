@@ -1,18 +1,19 @@
 package com.example.gifosaurus.viewmodel
 
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.gifosaurus.config.Constants.Companion.API_KEY
+import com.example.gifosaurus.config.Constants.Companion.LIMIT_GIFS
+import com.example.gifosaurus.config.Constants.Companion.OFFSET_LIMIT
 import com.example.gifosaurus.model.Gif
 import com.example.gifosaurus.repository.GiphyRepository
 import com.example.gifosaurus.ui.screens.searchbar.InputHistory
 import kotlinx.coroutines.launch
 
-const val API_KEY = "mOj6r0IttEZCtg9D3sdYjn3bJbMcRhKv"
-const val LIMIT = 1000
-const val OFFSET_LIMIT = 25
 
 /**
  * GifViewModel is a ViewModel class that manages and stores UI-related data for the Gif application.
@@ -35,6 +36,9 @@ class GifViewModel(private val repository: GiphyRepository) : ViewModel() {
     private val _gifs = MutableLiveData<List<Gif>>()
     val gifs: LiveData<List<Gif>> = _gifs
 
+    val searchText = mutableStateOf("")
+    val isActiveSearch = mutableStateOf(false)
+
     val fullHistory = mutableStateListOf<InputHistory>()
     val showHistory = mutableStateListOf<InputHistory>()
 
@@ -46,7 +50,7 @@ class GifViewModel(private val repository: GiphyRepository) : ViewModel() {
 
     fun loadTrendingGifs() {
         viewModelScope.launch {
-            val trendingGifs = repository.getTrendingGifs(API_KEY, LIMIT, offset)
+            val trendingGifs = repository.getTrendingGifs(API_KEY, LIMIT_GIFS, offset)
             _gifs.value = trendingGifs.data
             offset += OFFSET_LIMIT
         }
@@ -54,7 +58,7 @@ class GifViewModel(private val repository: GiphyRepository) : ViewModel() {
 
     fun searchGifs(query: String) {
         viewModelScope.launch {
-            val searchResults = repository.searchGifs(API_KEY, query, LIMIT, offset)
+            val searchResults = repository.searchGifs(API_KEY, query, LIMIT_GIFS, offset)
             val filteredResults = searchResults.data.filter { it.title.contains(query, ignoreCase = true) }
             _gifs.value = filteredResults
             offset += OFFSET_LIMIT

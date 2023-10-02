@@ -21,6 +21,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.gifosaurus.config.Constants.Companion.TEXT_WHEN_QUERY_IS_EMPTY
+import com.example.gifosaurus.config.Icons.Companion.iconClear
+import com.example.gifosaurus.config.Icons.Companion.iconSearch
 import com.example.gifosaurus.ui.theme.SearchTextColor
 import com.example.gifosaurus.viewmodel.GifViewModel
 
@@ -30,9 +33,8 @@ import com.example.gifosaurus.viewmodel.GifViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchBar(viewModel: GifViewModel) {
-    val searchText = remember { mutableStateOf("") }
-    val iconSearch = Icons.Filled.Search
-    val iconClear = Icons.Filled.Clear
+    val searchText = viewModel.searchText
+
     val isActive = remember {
         mutableStateOf(false)
     }
@@ -57,6 +59,7 @@ fun SearchBar(viewModel: GifViewModel) {
             searchText.value = text
             viewModel.showHistory.clear()
             viewModel.updateShowHistory(text)
+            viewModel.isActiveSearch.value = text.isNotEmpty()
         },
         onSearch = { text ->
             actionsForClickableInSearch(text)
@@ -65,7 +68,7 @@ fun SearchBar(viewModel: GifViewModel) {
             Text(
                 modifier = Modifier
                     .padding(start = 10.dp),
-                text = "Search",
+                text = TEXT_WHEN_QUERY_IS_EMPTY,
                 fontSize = 20.sp,
                 color = SearchTextColor
             )
@@ -94,6 +97,7 @@ fun SearchBar(viewModel: GifViewModel) {
                             searchText.value = ""
                             viewModel.showHistory.clear()
                             viewModel.showHistory.addAll(viewModel.fullHistory)
+                            viewModel.isActiveSearch.value = false
                         }
                         .padding(end = 10.dp),
                     imageVector = iconClear,
@@ -122,4 +126,4 @@ fun SearchBar(viewModel: GifViewModel) {
         }
     }
 }
-//showHistory.removeIf { it.textInput.isBlank() }
+
