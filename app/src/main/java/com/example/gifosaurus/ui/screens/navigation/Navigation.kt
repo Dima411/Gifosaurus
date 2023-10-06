@@ -6,11 +6,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.gifosaurus.api.GiphyApiService
-import com.example.gifosaurus.model.Gif
+import com.example.gifosaurus.network.model.Gif
 import com.example.gifosaurus.repository.GiphyRepository
-import com.example.gifosaurus.ui.screens.GifDetailScreen
-import com.example.gifosaurus.ui.screens.GifListScreen
-import com.example.gifosaurus.viewmodel.GifViewModel
+import com.example.gifosaurus.ui.screens.detailscreen.GifDetailScreen
+import com.example.gifosaurus.ui.screens.chiefscreen.GifListScreen
+import com.example.gifosaurus.network.viewmodel.GifViewModel
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

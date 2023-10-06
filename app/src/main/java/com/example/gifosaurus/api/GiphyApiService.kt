@@ -1,12 +1,12 @@
 package com.example.gifosaurus.api
 
-import com.example.gifosaurus.model.GifResponse
+import com.example.gifosaurus.network.model.GifResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 /**
- *  Інтерфейс, який визначає два запити до Giphy API - один для отримання популярних GIF-зображень
- *  і один для пошуку GIF-зображень
+ *  An interface that defines two requests to the Giphy API - one for getting popular GIF images
+ *  and one for searching GIF images.
  */
 interface GiphyApiService {
     @GET("v1/gifs/trending")

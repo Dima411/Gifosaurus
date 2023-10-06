@@ -1,4 +1,4 @@
-package com.example.gifosaurus.ui.screens
+package com.example.gifosaurus.ui.screens.detailscreen
 
 
 import androidx.compose.foundation.layout.Box
@@ -16,10 +16,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.example.gifosaurus.config.Constants.Companion.BASE_URL
-import com.example.gifosaurus.config.Constants.Companion.GIF_EXTENSION
-import com.example.gifosaurus.config.Icons.Companion.iconArrowBack
-import com.example.gifosaurus.model.Gif
+import com.example.gifosaurus.config.Constants.BASE_URL
+import com.example.gifosaurus.config.Constants.GIF_EXTENSION
+import com.example.gifosaurus.config.Icons.iconArrowBack
+import com.example.gifosaurus.network.model.Gif
+
 
 @OptIn(
     ExperimentalMaterial3Api::class,

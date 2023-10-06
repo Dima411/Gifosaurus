@@ -1,8 +1,7 @@
 package com.example.gifosaurus.repository
 
 import com.example.gifosaurus.api.GiphyApiService
-import com.example.gifosaurus.model.GifResponse
-import retrofit2.http.Query
+import com.example.gifosaurus.network.model.GifResponse
 
 /**
  * Клас, який використовує GiphyApiService для виконання запитів до API.

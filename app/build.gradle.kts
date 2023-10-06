@@ -66,11 +66,13 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10")
 
     // Glide
-    implementation("com.github.bumptech.glide:glide:4.12.0")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
     implementation("com.github.bumptech.glide:compose:1.0.0-alpha.6")
 
-
+    // Security
+    implementation("androidx.security:security-crypto:1.0.0")
+    implementation("androidx.security:security-identity-credential:1.0.0-alpha03")
 
     // Kotlin
     implementation("androidx.core:core-ktx:1.12.0")

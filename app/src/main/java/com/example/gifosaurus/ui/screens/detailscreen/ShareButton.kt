@@ -1,4 +1,4 @@
-package com.example.gifosaurus.ui.screens
+package com.example.gifosaurus.ui.screens.detailscreen
 
 import android.content.Intent
 import androidx.compose.material3.Button
@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import com.example.gifosaurus.config.Icons.Companion.iconShare
+import com.example.gifosaurus.config.Icons.iconShare
 
 /**
  * The function creates a share button with an icon

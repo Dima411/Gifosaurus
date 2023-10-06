@@ -1,4 +1,4 @@
-package com.example.gifosaurus.ui.screens
+package com.example.gifosaurus.ui.screens.chiefscreen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -30,15 +30,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.example.gifosaurus.config.Constants.Companion.BASE_URL
-import com.example.gifosaurus.config.Constants.Companion.ERROR_NO_GIFS_FOUND
-import com.example.gifosaurus.config.Constants.Companion.GIF_EXTENSION
-import com.example.gifosaurus.config.Constants.Companion.TITLE_PROGRAMME
-import com.example.gifosaurus.model.Gif
-import com.example.gifosaurus.ui.screens.searchbar.SearchBar
+import com.example.gifosaurus.config.Constants.BASE_URL
+import com.example.gifosaurus.config.Constants.ERROR_NO_GIFS_FOUND
+import com.example.gifosaurus.config.Constants.GIF_EXTENSION
+import com.example.gifosaurus.config.Constants.TITLE_PROGRAMME
+import com.example.gifosaurus.network.model.Gif
+import com.example.gifosaurus.ui.screens.chiefscreen.searchbar.SearchBar
 import com.example.gifosaurus.ui.theme.SerchBarBackgroundColor
 import com.example.gifosaurus.ui.theme.TopBarTextColor
-import com.example.gifosaurus.viewmodel.GifViewModel
+import com.example.gifosaurus.network.viewmodel.GifViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable

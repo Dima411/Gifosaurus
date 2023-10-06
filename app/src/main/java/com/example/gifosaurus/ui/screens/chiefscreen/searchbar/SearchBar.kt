@@ -1,16 +1,11 @@
-package com.example.gifosaurus.ui.screens.searchbar
+package com.example.gifosaurus.ui.screens.chiefscreen.searchbar
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ShapeDefaults
@@ -21,11 +16,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.gifosaurus.config.Constants.Companion.TEXT_WHEN_QUERY_IS_EMPTY
-import com.example.gifosaurus.config.Icons.Companion.iconClear
-import com.example.gifosaurus.config.Icons.Companion.iconSearch
+import com.example.gifosaurus.config.Constants.TEXT_WHEN_QUERY_IS_EMPTY
+import com.example.gifosaurus.config.Icons.iconClear
+import com.example.gifosaurus.config.Icons.iconSearch
 import com.example.gifosaurus.ui.theme.SearchTextColor
-import com.example.gifosaurus.viewmodel.GifViewModel
+import com.example.gifosaurus.network.viewmodel.GifViewModel
 
 /**
  * The function shows the search panel on the chief screen and looking for right gif

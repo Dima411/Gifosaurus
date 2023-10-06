@@ -1,4 +1,4 @@
-package com.example.gifosaurus.viewmodel
+package com.example.gifosaurus.network.viewmodel
 
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -6,14 +6,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.gifosaurus.config.Constants.Companion.API_KEY
-import com.example.gifosaurus.config.Constants.Companion.LIMIT_GIFS
-import com.example.gifosaurus.config.Constants.Companion.OFFSET_LIMIT
-import com.example.gifosaurus.model.Gif
+import com.example.gifosaurus.config.Constants.API_KEY
+import com.example.gifosaurus.config.Constants.LIMIT_GIFS
+import com.example.gifosaurus.config.Constants.OFFSET_LIMIT
+import com.example.gifosaurus.network.model.Gif
 import com.example.gifosaurus.repository.GiphyRepository
-import com.example.gifosaurus.ui.screens.searchbar.InputHistory
+import com.example.gifosaurus.ui.screens.chiefscreen.searchbar.InputHistory
 import kotlinx.coroutines.launch
-
 
 /**
  * GifViewModel is a ViewModel class that manages and stores UI-related data for the Gif application.
@@ -50,15 +49,16 @@ class GifViewModel(private val repository: GiphyRepository) : ViewModel() {
 
     fun loadTrendingGifs() {
         viewModelScope.launch {
-            val trendingGifs = repository.getTrendingGifs(API_KEY, LIMIT_GIFS, offset)
+            val trendingGifs = API_KEY.let { repository.getTrendingGifs(it, LIMIT_GIFS, offset) }
             _gifs.value = trendingGifs.data
             offset += OFFSET_LIMIT
         }
     }
 
+
     fun searchGifs(query: String) {
         viewModelScope.launch {
-            val searchResults = repository.searchGifs(API_KEY, query, LIMIT_GIFS, offset)
+            val searchResults = API_KEY.let { repository.searchGifs(it, query, LIMIT_GIFS, offset) }
             val filteredResults = searchResults.data.filter { it.title.contains(query, ignoreCase = true) }
             _gifs.value = filteredResults
             offset += OFFSET_LIMIT
